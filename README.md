@@ -45,6 +45,47 @@ Folder Tree
 ### Creating Docker image
 The following command is used to create docker image
 ```sh
-docker build -t python-docker-app .
+docker build -t itzprashanth/python-docker-app:latest .
 ```
 Push the image to your favourite repository
+```sh
+docker push itzprashanth/python-docker-app:latest
+```
+Create a helm chart using following command
+```sh
+helm create python-docker-app
+```
+Updates made on helm charts
+- Update python-web-app/templates/deployment.yaml file, I updated containerPort to 5000
+- Update python-web-app/values.yaml file with required details, in my case I updated image repository, tag of docker image to latest and autoscaling
+```sh
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 40
+```
+- To dry run the helm chart, run the following command
+```sh
+helm install --dry-run ./python-web-app/ --generate-name
+```
+- To run the helm chart
+```sh
+helm install ./python-web-app/ --generate-name
+```
+- To list the helm charts installed
+```sh
+helm list
+```
+- To list the running pods
+```sh
+kubectl get pods
+```
+- If you found any errors in the running pods, run the following command to get the details of the pods
+```sh
+kubectl describe pod python-web-app-1664126080-6bfcdcfdfc-vskk9
+```
+- To delete the helm chart, run the following command
+```sh
+helm uninstall python-web-app-1664126080
+```
