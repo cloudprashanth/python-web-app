@@ -57,7 +57,7 @@ helm create python-docker-app
 ```
 Updates made on helm charts
 - Update python-web-app/templates/deployment.yaml file, I updated containerPort to 5000
-- Update python-web-app/values.yaml file with required details, in my case I updated image repository, tag of docker image to latest and autoscaling
+- Update python-web-app/values.yaml file with required details, in my case I updated image repository, tag of docker image to latest, autoscaling values and service type to LoadBalancer
 ```sh
 autoscaling:
   enabled: true
@@ -89,3 +89,8 @@ kubectl describe pod python-web-app-1664126080-6bfcdcfdfc-vskk9
 ```sh
 helm uninstall python-web-app-1664126080
 ```
+## Result
+### Access the website from www.prashanthg.tk
+### Routes
+### www.prashanthg.tk/app
+### www.prashanthg.tk/time
